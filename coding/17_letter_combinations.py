@@ -29,9 +29,6 @@ digits[i] is a digit in the range ['2', '9'].
 # Author: Rajesh Pyne
 # Email:  rajesh.pyne@gmail.com
 
-from ntpath import join
-
-from black import out
 from helper_lib import BusinessService
 import time
 from itertools import product
@@ -65,7 +62,8 @@ class LetterCombination(BusinessService):
         # doing a cartesian product of the lists
         cartesian_prod = list(product(*dig_list))
         join_list = ["".join(a) for a in cartesian_prod]
-        return join_list
+        op = [] if len(join_list) == 1 else join_list
+        return op
 
 
 if __name__ == "__main__":
@@ -75,13 +73,13 @@ if __name__ == "__main__":
 
     start_time = time.time()
 
-    # print(
-    #     "compute result =",
-    #     combine.calculate(digits="2345"),
-    #     ", time taken - ",
-    #     (time.time() - start_time),
-    #     " seconds",
-    # )
+    print(
+        "compute result =",
+        combine.calculate(digits="25"),
+        ", time taken - ",
+        (time.time() - start_time),
+        " seconds",
+    )
 
     # Test Cases
     assert combine.calculate(digits="23") == [
@@ -95,7 +93,7 @@ if __name__ == "__main__":
         "ce",
         "cf",
     ]
-    assert combine.calculate(digits="") == [""]
-    # assert combine.calculate(digits="1") == []
+    assert combine.calculate(digits="") == []
+    assert combine.calculate(digits="1") == []
 
     print("all test case passed")
