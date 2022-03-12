@@ -26,32 +26,19 @@ Constraints:
 
 
 def reverse(x):
-    MAX = 2147483647
-    MIN = -2147483648
-    flag = 0
-
-    # check if the number is negative
-    if x < 0:
-        flag = 1
+    flag = True if x < 0 else False
 
     temp = abs(x)
     f = 0
     while temp > 0:
-        n = temp // 10  # 12, 1, 0
-        r = temp % 10  # 3, 2, 1
-        f = f * 10 + r  # 3, 32, 321
-        temp = n  # 12, 1, 0
+        f = f * 10 + temp % 10
+        temp //= 10
 
     # Constraints
-    if f >= MAX:
-        return 0
-    elif f <= MIN:
+    if f >= 2 ** 31 - 1 or f <= -(2 ** 31):
         return 0
 
-    if flag == 1:
-        return -(f)
-    else:
-        return f
+    return -f if flag else f
 
 
 x = reverse(123)
